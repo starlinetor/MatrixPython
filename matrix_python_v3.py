@@ -1,4 +1,4 @@
-import os, time, random, sys, colorama
+import os, time, random
 
 def randint_exception(max: int, exceptions: list[int]) -> int:
     '''
@@ -45,7 +45,6 @@ def matrix_char(char_number: int = -1, max_number: int = -1) -> str:
         blue = 0
         return f"\033[38;2;{red};{green};{blue}m{chr(random.randint(33,126))}\033[0m"
     
-
 def copy_color(string_to_copy: str, new_str):
     '''
     Given a string with a Ansi escape color and a clean string the function returns\n
@@ -55,11 +54,15 @@ def copy_color(string_to_copy: str, new_str):
     string_to_copy = string_to_copy.encode('unicode_escape').decode('ascii')
     return string_to_copy[:string_to_copy.find("m")+1].encode('ascii').decode('unicode_escape')+new_str+'\033[0m'
 
-height: int = 25
-width: int = 200 
+#constants
+height: int = os.get_terminal_size().lines -1
+width: int = os.get_terminal_size().columns 
 colums_lenght: int = 12
 change_prob: float = 0.8
 
+#fixing terminal size
+
+#runtime varable
 colums_positions: list[int] = []
 frame: list[list[str]] = [[" "]*width + ["\n"]]*height
 frame_moving: list[list[str]] = [[" "]*width + ["\n"]]*height
@@ -68,6 +71,7 @@ frame_moving: list[list[str]] = [[" "]*width + ["\n"]]*height
 line : list[str] = [" "]*width + ["\n"]
 
 while True:
+
     #clear the canvas
     os.system('cls')
 
