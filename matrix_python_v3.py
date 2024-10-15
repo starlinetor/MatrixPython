@@ -57,7 +57,7 @@ def copy_color(string_to_copy: str, new_str):
 #constants
 height: int = os.get_terminal_size().lines -1
 width: int = os.get_terminal_size().columns 
-colums_lenght: int = 12
+colums_lenght: int = 18
 change_prob: float = 0.8
 
 #fixing terminal size
@@ -99,17 +99,10 @@ while True:
             elif(random.random() < change_prob):
                 frame_moving[frame.index(line)][line.index(char)] = copy_color(char, matrix_char())
 
+    #print the frame
 
     for lines in reversed(frame_moving):
         print(''.join(lines),end='')
 
-    #print the frame
-
-    #print("-"*width)
-
-    for lines in reversed(frame):
-        continue
-        print(''.join(lines),end='')
-    
     #delay
     time.sleep(0.042)
