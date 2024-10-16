@@ -59,6 +59,7 @@ height: int = os.get_terminal_size().lines -1
 width: int = os.get_terminal_size().columns 
 colums_lenght: int = 18
 change_prob: float = 0.8
+fps : int = 24
 
 #fixing terminal size
 
@@ -105,4 +106,4 @@ while True:
         print(''.join(lines),end='')
 
     #delay
-    time.sleep(0.042)
+    time.sleep(1/fps)
