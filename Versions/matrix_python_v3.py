@@ -45,7 +45,7 @@ def matrix_char(char_number: int = -1, max_number: int = -1) -> str:
         blue = 0
         return f"\033[38;2;{red};{green};{blue}m{chr(random.randint(33,126))}\033[0m"
     
-def copy_color(string_to_copy: str, new_str):
+def copy_color(string_to_copy: str, new_str) -> str:
     '''
     Given a string with a Ansi escape color and a clean string the function returns\n
     the clean string with the color of the old one
