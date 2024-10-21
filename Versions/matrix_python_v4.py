@@ -58,6 +58,11 @@ def copy_color(string_to_copy: str, new_str) -> str:
 stdscr = curses.initscr()
 #removes key imputs
 curses.noecho()
+#no enter required for keys
+curses.cbreak()
+#keypad mode
+stdscr.keypad(True)
+
 
 
 #constants
@@ -113,3 +118,12 @@ while True:
 
     #delay
     time.sleep(1/fps)
+
+    if(curses.KEY_CANCEL):
+        break
+
+#terminate curses terminal
+curses.nocbreak()
+stdscr.keypad(False)
+curses.echo()
+curses.endwin()
