@@ -1,5 +1,6 @@
 from concurrent.futures import thread
 import curses
+from tkinter import Frame
 from matrix_utils import randint_exception, remove_excess, matrix_char, copy_color, join_list_list_str
 import time
 import random
@@ -42,6 +43,7 @@ def frame_renderer (
 
     #crop the frame
     remove_excess(frame, height)
+    remove_excess(frame_temp, height)
 
     return frame
 
@@ -54,16 +56,18 @@ def draw_matrix(stdscr) -> None:
     height:int 
     width:int
     height, width = stdscr.getmaxyx()
-    height -= 2
-    width -= 10
+
+    matrix_width : int = width - 1
+    matrix_height: int = height - 1
+
     colums_lenght: int = 18
-    fps: int = 24
+    fps: int = 48
     change_prob: float = 0.8
 
     colums_positions: list[int] = []
-    frame: list[str] = [" "*width+"\n"]*height
-    frame_temp: list[str] = [" "*width+"\n"]*height
-    line : list[str] = [" "]*width + ["\n"]
+    frame: list[str] = [" "*matrix_width+"\n"]*matrix_height
+    frame_temp: list[str] = [" "*matrix_width+"\n"]*matrix_height
+    line : list[str] = [" "]*matrix_width + ["\n"]
 
     #clear and refresh the screen for a blank canvas
     stdscr.clear()
@@ -74,7 +78,8 @@ def draw_matrix(stdscr) -> None:
 
     #start colors in curses
     curses.start_color()
-    curses.init_pair(1, curses.COLOR_CYAN, curses.COLOR_BLACK)
+    curses.init_pair(1, curses.COLOR_GREEN, curses.COLOR_BLACK)
+    curses.init_pair(3, curses.COLOR_BLACK, curses.COLOR_GREEN)
 
     frames = 0
 
@@ -85,15 +90,21 @@ def draw_matrix(stdscr) -> None:
         #initialization
         stdscr.clear()
 
-        frame = frame_renderer(frame, frame_temp, line, colums_positions, width, height,colums_lenght, change_prob)
+        frame = frame_renderer(frame, frame_temp, line, colums_positions, matrix_width, matrix_height, colums_lenght, change_prob)    
+        stdscr.addstr(0,0,"".join(reversed(frame)),curses.color_pair(1))
 
-        stdscr.addstr(0,0,f"Matrix : {frames}",curses.color_pair(1))    
-        stdscr.addstr(1,0,"".join(reversed(frame)),curses.color_pair(1))
+        statusbarstr = f"Press 'q' to exit | STATUS BAR | Matrix_Python | Frames : {frames}"
 
-        stdscr.refresh()
+        # Render status bar
+        stdscr.attron(curses.color_pair(3))
+        stdscr.addstr(height-1, 0, statusbarstr)
+        stdscr.addstr(height-1, len(statusbarstr), " " * (width - len(statusbarstr) - 1))
+        stdscr.attroff(curses.color_pair(3))
 
         #wait for next input
         key = stdscr.getch()
+
+        stdscr.refresh()
 
         time.sleep(1/fps)
 
