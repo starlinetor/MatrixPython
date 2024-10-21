@@ -1,4 +1,4 @@
-import os, time, random
+import os, time, random, curses
 
 def randint_exception(max: int, exceptions: list[int]) -> int:
     '''
@@ -53,6 +53,12 @@ def copy_color(string_to_copy: str, new_str) -> str:
 
     string_to_copy = string_to_copy.encode('unicode_escape').decode('ascii')
     return string_to_copy[:string_to_copy.find("m")+1].encode('ascii').decode('unicode_escape')+new_str+'\033[0m'
+
+#initializing stdcr
+stdscr = curses.initscr()
+#removes key imputs
+curses.noecho()
+
 
 #constants
 height: int = os.get_terminal_size().lines -1
