@@ -1,3 +1,5 @@
+import random
+
 def randint_exception(max: int, exceptions: list[int]) -> int:
     '''
     Given a max value returns an int from 1 to the max value\n
@@ -51,3 +53,15 @@ def copy_color(string_to_copy: str, new_str) -> str:
 
     string_to_copy = string_to_copy.encode('unicode_escape').decode('ascii')
     return string_to_copy[:string_to_copy.find("m")+1].encode('ascii').decode('unicode_escape')+new_str+'\033[0m'
+
+def join_list_list_str(list_list_str: list[list[str]]) -> str:
+    '''
+    Given a list of lists of strings it returns the string from joining all strings
+    '''
+
+    list_str: list[str] = []
+
+    for element in list_list_str: 
+        list_str.append("".join(element))
+    
+    return "".join(list_str)
