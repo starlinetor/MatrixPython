@@ -12,3 +12,4 @@ Edit the following parameters to change how the animation looks and feels <br/>
 v1 : barebone version, no color just text <br/>
 v2 : added color gradient <br/>
 v3 : varius ease of use features and code rewriting <br/>
+v4 : new render system -> removed bliking but lost color gradient <br/>
