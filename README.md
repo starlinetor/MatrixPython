@@ -4,7 +4,7 @@ Simple cmd animation similar to the matrix effect from the movie matrix
 # How to use
 Run it on a terminal for the best effect <br/>
 Edit the following parameters to change how the animation looks and feels <br/>
-&emsp;colums_lenght :the lenght of a colum of characters <br/>
+&emsp;colums_lenght : the lenght of a colum of characters <br/>
 &emsp;change_prob : the probability of a charcater changing between frames, goes from 0 to 1 <br/>
 &emsp;fps : the frames per second, increase the number to increase the speed of the animation. <br/>
 
