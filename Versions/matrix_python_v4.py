@@ -1,7 +1,6 @@
 from concurrent.futures import thread
 import curses
-from tkinter import Frame
-from matrix_utils import randint_exception, remove_excess, matrix_char, copy_color, join_list_list_str
+from matrix_utils import randint_exception, remove_excess, matrix_char
 import time
 import random
 
@@ -61,8 +60,8 @@ def draw_matrix(stdscr) -> None:
     matrix_height: int = height - 1
 
     colums_lenght: int = 18
-    fps: int = 48
-    change_prob: float = 0.8
+    fps: int = 24
+    change_prob: float = 0.8 
 
     colums_positions: list[int] = []
     frame: list[str] = [" "*matrix_width+"\n"]*matrix_height
